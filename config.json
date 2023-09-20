@@ -76,7 +76,7 @@
     },
     "password": "",
     "pawn": {
-        "legacy_plugins": ["server.dll", "PySAMP.dll"],
+        "legacy_plugins": ["cef.dll", "PySAMP.dll"],
         "main_scripts": [
             "blank"
         ],

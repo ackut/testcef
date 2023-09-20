@@ -1202,8 +1202,6 @@
 		</member>
 		<member name="F:__file">
 		</member>
-		<member name="F:__file">
-		</member>
 		<member name="F:__time">
 		</member>
 
@@ -1848,21 +1846,6 @@
 			<stacksize value="1"/>
 			<library>time</library>  <summary>A timer event occurred.</summary>  <remarks>  This function executes after the configured delay or interval expires.  See <c>settimer</c> to  set the delay or interval.  Depending on the timing precision of the host, the call may occur  later than the delay that was set.  <p/>  If the timer was set as a "single-shot", it must be ex plicitly set again for a next execution  for the <c>@timer</c>function.  If the timer is set to be repetitive, <c>@timer</c> will continue  to be called with the set interval until it is disabled with another call to <c>settimer</c>.  </remarks>  <returns>The return value of this function is currently ignored.</returns> 
 		</member>
-		<member name="M:GetPlayerIp" syntax="GetPlayerIp(playerid, ip[], len)">
-			<attribute name="native"/>
-			<referrer name="OnPlayerConnect"/>
-			<param name="playerid">
-				The ID of the player to get the IP address of
-			</param>
-			<param name="ip">
-				<paraminfo> [] </paraminfo>
-				An array into which to store the player's IP address, passed by reference
-			</param>
-			<param name="len">
-				The maximum length of the IP address (recommended 16)
-			</param>
-			<library>omp_network</library>  <summary>Get the specified player's IP address and store it in a string.</summary>        <seealso name="NetStats_GetIpPort" />  <seealso name="GetPlayerName" />  <seealso name="GetPlayerPing" />  <seealso name="GetPlayerVersion" />  <seealso name="OnIncomingConnection" />  <seealso name="OnPlayerConnect" />  <seealso name="OnPlayerDisconnect" />  <remarks>This function does not work when used in <a href="#OnPlayerDisconnect">OnPlayerDisconnect</a>  because the player is already disconnected.  It will return an invalid IP (<b><c>255.255.255.255</c></b>).  Save players' IPs under <a href="#OnPlayerConnect">OnPlayerConnect</a> if they need to be used under  <a href="#OnPlayerDisconnect">OnPlayerDisconnect</a>. </remarks>  <returns><b><c>1</c></b> on success and <b><c>0</c></b> on failure.</returns> 
-		</member>
 		<member name="M:GetPlayerLastSyncedTrailerID" syntax="GetPlayerLastSyncedTrailerID(playerid)">
 			<stacksize value="1"/>
 			<param name="playerid">
@@ -2122,10 +2105,7 @@
 			<summary>This callback is called when a player enters a command into the client chat window.  Commands  are anything that start with a forward slash, e.g. <c>/help</c>.</summary>      <seealso name="OnPlayerText" />  <seealso name="OnRconCommand" />  <seealso name="SendRconCommand" />  <remarks>This callback can also be called by NPC.</remarks>  <returns>  Return <b><c>1</c></b> if the command was processed, otherwise <b><c>0</c></b>; If the command  was not found both in filterscripts and in gamemode, the player will be received a message: <em>SERVER:  Unknown command</em>.<br />  It is always called first in filterscripts so returning <b><c>1</c></b> there blocks other scripts  from seeing it.  </returns> 
 		</member>
 		<member name="M:OnPlayerConnect" syntax="OnPlayerConnect(playerid)">
-			<attribute name="public"/>
-			<stacksize value="27"/>
-			<dependency name="GetPlayerIp"/>
-			<dependency name="cef_on_player_connect"/>
+			<stacksize value="1"/>
 			<param name="playerid">
 				The ID of the player that connected
 			</param>
@@ -2145,9 +2125,7 @@
 			<summary>This callback is called when a player dies, either by suicide or by being killed by another  player.</summary>        <seealso name="OnPlayerSpawn" />  <seealso name="SendDeathMessage" />  <seealso name="SetPlayerHealth" />  <remarks>  The reason will return 37 (flame thrower) from any fire sources (e.g.  molotov, 18)<br />  The reason will return 51 from any weapon that creates an explosion (e.g.  RPG, grenade)<br />  You do not need to check whether killerid is valid before using it in <a href="#SendDeathMessage">SendDeathMessage</a>.  <b><c>INVALID_PLAYER_ID</c></b> is a valid killerid ID parameter in that function.<br />  <b>playerid</b> is the only one who can call the callback. (good to know for anti fake death)  </remarks>  <returns>  <b><c>0</c></b> - Will prevent other filterscripts from receiving this callback.<br />  <b><c>1</c></b> - Indicates that this callback will be passed to the next filterscript.<br />  It is always called first in filterscripts.  </returns> 
 		</member>
 		<member name="M:OnPlayerDisconnect" syntax="OnPlayerDisconnect(playerid, reason)">
-			<attribute name="public"/>
-			<stacksize value="3"/>
-			<dependency name="cef_on_player_disconnect"/>
+			<stacksize value="1"/>
 			<param name="playerid">
 				The ID of the player that disconnected
 			</param>
@@ -3187,21 +3165,6 @@
 				<paraminfo>bool </paraminfo>
 			</param>
 			<library>time</library> 
-		</member>
-		<member name="M:cef_on_player_connect" syntax="cef_on_player_connect(player_id, ip[])">
-			<attribute name="native"/>
-			<referrer name="OnPlayerConnect"/>
-			<param name="player_id">
-			</param>
-			<param name="ip">
-				<paraminfo> [] </paraminfo>
-			</param>
-		</member>
-		<member name="M:cef_on_player_disconnect" syntax="cef_on_player_disconnect(player_id)">
-			<attribute name="native"/>
-			<referrer name="OnPlayerDisconnect"/>
-			<param name="player_id">
-			</param>
 		</member>
 		<member name="M:clreol" syntax="clreol()">
 			<stacksize value="1"/>

@@ -24,15 +24,15 @@ def on_player_connect(player: Player):
 @Player.on_spawn
 @Player.using_pool
 def on_player_spawn(player: Player):
-    create_browser(player.id, 1, 'https://tms-server.com/', False, False)
-    return False
+    ...
+    # create_browser(player.id, 1, 'https://tms-server.com/', False, False)
 
 
-def OnCefInitialize(player_id, success):
-    print(f'OnCefInitialize({player_id=}, {success=})')
+# def OnCefInitialize(player_id, success):
+#     print(f'OnCefInitialize({player_id=}, {success=})')
 
-    if success:
-        create_browser(player_id, 1, 'https://tms-server.com/', False, False)
+#     if success:
+#         create_browser(player_id, 1, 'https://tms-server.com/', False, False)
 
-    else:
-        player_has_plugin(player_id)
+#     else:
+#         player_has_plugin(player_id)

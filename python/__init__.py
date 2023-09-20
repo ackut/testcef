@@ -25,8 +25,7 @@ def on_gamemode_init():
 @cmd
 @Player.using_pool
 def cef(player: Player):
-    # player.send_client_message(-1, f'{pycef.player_has_plugin(player.id)}')
-    pycef.create_browser(player.id, 123, "https://www.youtube.com/embed/78CcMEIOP2A?autoplay=1&controls=0", False, False)
+    pycef.create_browser(player.id, 123, "https://www.youtube.com/watch?v=SInhTxYwEWc?autoplay=1&controls=0", False, False)
 
 
 @Player.on_connect

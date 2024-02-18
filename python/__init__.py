@@ -1,10 +1,8 @@
 import samp
 from pysamp import *
-from pysamp.commands import cmd
-from pysamp.timer import set_timer
+from python import cef
+from python.cef import *
 from python.player import Player
-from python import pycef
-from python.pycef import *
 
 
 samp.config(encoding='cp1251')
@@ -12,26 +10,25 @@ samp.config(encoding='cp1251')
 
 @on_gamemode_init
 def on_gamemode_init():
-    set_game_mode_text('I Love 664')
-    add_player_class(0, -2623.6630, 1408.8757, 7.1015, 195.1507, -1, -1, -1, -1, -1, -1)
-    show_player_markers(1)
-    show_name_tags(True)
-    set_name_tag_draw_distance(40)
-    enable_stunt_bonus_for_all(False)
-    disable_interior_enter_exits()
-    set_weather(0)
-
-
-@cmd
-@Player.using_pool
-def cef(player: Player):
-    pycef.create_browser(player.id, 123, "https://www.youtube.com/watch?v=SInhTxYwEWc?autoplay=1&controls=0", False, False)
+    set_game_mode_text('PyCEF Demo')
+    cef_register_callbacks([
+        ['login_event', 'is']
+    ])
 
 
 @Player.on_connect
 @Player.using_pool
 def on_player_connect(player: Player):
-    ...
+    cef_on_player_connect(
+        player_id=player.get_id(),
+        player_ip=player.get_ip()
+    )
+
+
+def login_event(player_id: int, args: str):
+    login, password = args.split()
+    player: Player = Player.from_pool(player_id)
+    player.send_client_message(-1, f'[Auth] Login: {login}, Password: {password}')
 
 
 @Player.on_disconnect
